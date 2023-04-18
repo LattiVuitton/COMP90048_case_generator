@@ -20,7 +20,9 @@ while attempt_count < max_attempts:
         row = []
         row_string = '          ['
         if i == 0:
-            row_string = '\n\n\nCopy the following:\ntestx :-\nPuzzle = [['
+            row_string = '\n\n\nCopy the following:\n\nwrite_puzzle([]).\nwrite_puzzle([Line|Rest]) :-\n    write(Line),\n    nl,\n    write_puzzle(Rest).\n\ntestx :-\nPuzzle = [['
+            
+
         for j in range(puzzle_width):
             if random.random() < black_square_threshold:
                 random_letter = '#'
@@ -68,6 +70,7 @@ while attempt_count < max_attempts:
                 word_string = word_string[:-2]
                 print('           [' + word_string + '],')
     word_list = []
+    printing = ""
     for word in words:
         word_list.append(word)
     for i in range(len(grid[0])):
@@ -79,7 +82,6 @@ while attempt_count < max_attempts:
         for segment in split_column:
             if len(segment) > 1:
                 words.append(segment)
-        printing = ""
         for j, word in enumerate(words):
             if len(word) > 1:
                 word_string = ""
